@@ -3,51 +3,40 @@ resource "helm_release" "this" {
   chart                      = var.chart
   version                    = var.chart_version
   repository                 = var.repository
+  repository_ca_file         = var.repository_ca_file
+  repository_cert_file       = var.repository_cert_file
+  repository_key_file        = var.repository_key_file
+  repository_password        = var.repository_password
+  repository_username        = var.repository_username
   namespace                  = var.namespace
   create_namespace           = var.create_namespace
+  description                = var.description
+  devel                      = var.devel
+  keyring                    = var.keyring
   timeout                    = var.timeout
   values                     = var.values
-  atomic                     = false
-  cleanup_on_fail            = false
-  dependency_update          = false
-  disable_crd_hooks          = false
-  disable_openapi_validation = false
-  disable_webhooks           = false
-  force_update               = false
-  lint                       = false
-  max_history                = 0
-  pass_credentials           = false
-  recreate_pods              = false
-  render_subchart_notes      = true
-  replace                    = false
-  reset_values               = false
-  reuse_values               = false
-  skip_crds                  = false
-  verify                     = false
-  wait                       = true
-  wait_for_jobs              = false
-  # dynamic "set" {
-  #   for_each = var.set != [] ? var.set : []
-  #   iterator = s
-  #   content {
-  #     name  = s.value.name
-  #     value = s.value.value
-  #   }
-  # }
-  # dynamic "set_list" {
-  #   for_each = try(var.set_list, {})
-  #   iterator = s
-  #   content {
-  #     name  = s.value.name
-  #     value = s.value.list
-  #   }
-  # }
-  # dynamic "set_sensitive" {
-  #   for_each = try(var.set_sensitive, {})
-  #   iterator = s
-  #   content {
-  #     name  = s.value.name
-  #     value = base64encode(file(s.value.secret_file))
-  #   }
-  # }
+  atomic                     = var.atomic
+  cleanup_on_fail            = var.cleanup_on_fail
+  dependency_update          = var.dependency_update
+  disable_crd_hooks          = var.disable_crd_hooks
+  disable_openapi_validation = var.disable_openapi_validation
+  disable_webhooks           = var.disable_webhooks
+  force_update               = var.force_update
+  lint                       = var.lint
+  max_history                = var.max_history
+  pass_credentials           = var.pass_credentials
+  recreate_pods              = var.recreate_pods
+  render_subchart_notes      = var.render_subchart_notes
+  replace                    = var.replace
+  reset_values               = var.reset_values
+  reuse_values               = var.reuse_values
+  skip_crds                  = var.skip_crds
+  take_ownership             = var.take_ownership
+  upgrade_install            = var.upgrade_install
+  verify                     = var.verify
+  wait                       = var.wait
+  wait_for_jobs              = var.wait_for_jobs
+  set                        = var.set
+  set_list                   = var.set_list
+  set_sensitive              = var.set_sensitive
 }
